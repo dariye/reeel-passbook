@@ -59,4 +59,4 @@ gem 'compass-rails', '~> 2.0.2'
 gem 'furatto'
 gem 'font-awesome-rails'
 gem 'simple_form'
-
+gem "paperclip", "~> 4.3"
