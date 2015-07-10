@@ -11,21 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710062003) do
+ActiveRecord::Schema.define(version: 20150710191304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "screenings", force: :cascade do |t|
-    t.string   "title",                   default: ""
-    t.string   "location",                default: ""
-    t.datetime "time_date",               default: '2015-07-10 06:16:10'
-    t.integer  "valid_for",               default: 0
-    t.text     "terms_n_conditions",      default: ""
-    t.string   "pass_barcode_string",     default: ""
-    t.integer  "pass_id"
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
+    t.string   "title",                     default: ""
+    t.string   "location",                  default: ""
+    t.datetime "time_date",                 default: '2015-07-10 06:16:10'
+    t.text     "terms_n_conditions",        default: ""
+    t.string   "pass_barcode_string",       default: ""
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
     t.string   "bg_img_file_name"
     t.string   "bg_img_content_type"
     t.integer  "bg_img_file_size"
@@ -58,9 +56,9 @@ ActiveRecord::Schema.define(version: 20150710062003) do
     t.string   "tn_img_x_content_type"
     t.integer  "tn_img_x_file_size"
     t.datetime "tn_img_x_updated_at"
+    t.string   "parse_screening_object_id"
+    t.integer  "max_tickets_to_issue",      default: 1
   end
-
-  add_index "screenings", ["pass_id"], name: "index_screenings_on_pass_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
