@@ -11,21 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710061159) do
+ActiveRecord::Schema.define(version: 20150710062003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "screenings", force: :cascade do |t|
-    t.string   "title",               default: ""
-    t.string   "location",            default: ""
-    t.datetime "time_date",           default: '2015-07-10 06:16:10'
-    t.integer  "valid_for",           default: 0
-    t.text     "terms_n_conditions",  default: ""
-    t.string   "pass_barcode_string", default: ""
+    t.string   "title",                   default: ""
+    t.string   "location",                default: ""
+    t.datetime "time_date",               default: '2015-07-10 06:16:10'
+    t.integer  "valid_for",               default: 0
+    t.text     "terms_n_conditions",      default: ""
+    t.string   "pass_barcode_string",     default: ""
     t.integer  "pass_id"
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.string   "bg_img_file_name"
+    t.string   "bg_img_content_type"
+    t.integer  "bg_img_file_size"
+    t.datetime "bg_img_updated_at"
+    t.string   "bg_img_x_file_name"
+    t.string   "bg_img_x_content_type"
+    t.integer  "bg_img_x_file_size"
+    t.datetime "bg_img_x_updated_at"
+    t.string   "icon_img_file_name"
+    t.string   "icon_img_content_type"
+    t.integer  "icon_img_file_size"
+    t.datetime "icon_img_updated_at"
+    t.string   "icon_img_x_file_name"
+    t.string   "icon_img_x_content_type"
+    t.integer  "icon_img_x_file_size"
+    t.datetime "icon_img_x_updated_at"
+    t.string   "logo_img_file_name"
+    t.string   "logo_img_content_type"
+    t.integer  "logo_img_file_size"
+    t.datetime "logo_img_updated_at"
+    t.string   "logo_img_x_file_name"
+    t.string   "logo_img_x_content_type"
+    t.integer  "logo_img_x_file_size"
+    t.datetime "logo_img_x_updated_at"
+    t.string   "tn_img_file_name"
+    t.string   "tn_img_content_type"
+    t.integer  "tn_img_file_size"
+    t.datetime "tn_img_updated_at"
+    t.string   "tn_img_x_file_name"
+    t.string   "tn_img_x_content_type"
+    t.integer  "tn_img_x_file_size"
+    t.datetime "tn_img_x_updated_at"
   end
 
   add_index "screenings", ["pass_id"], name: "index_screenings_on_pass_id", using: :btree
