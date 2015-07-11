@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710191304) do
+ActiveRecord::Schema.define(version: 20150711074836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "passes", force: :cascade do |t|
+    t.string   "pass_type_id",  default: ""
+    t.string   "serial_number", default: ""
+    t.integer  "screening_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "passes", ["screening_id"], name: "index_passes_on_screening_id", using: :btree
 
   create_table "screenings", force: :cascade do |t|
     t.string   "title",                     default: ""
@@ -56,8 +66,8 @@ ActiveRecord::Schema.define(version: 20150710191304) do
     t.string   "tn_img_x_content_type"
     t.integer  "tn_img_x_file_size"
     t.datetime "tn_img_x_updated_at"
-    t.string   "parse_screening_object_id"
     t.integer  "max_tickets_to_issue",      default: 1
+    t.string   "parse_screening_object_id", default: ""
   end
 
   create_table "users", force: :cascade do |t|

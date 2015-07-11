@@ -43,13 +43,15 @@ group :development, :test do
   gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
 end
 
 group :test do
   gem 'rspec-rails', '~> 2.14'
-  gem 'factory_girl_rails'
-  gem 'ffaker'
+  gem 'shoulda-matchers'
 end
+
 gem 'responders'
 gem 'passbook'
 gem 'grocer'
