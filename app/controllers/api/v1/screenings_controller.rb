@@ -10,7 +10,8 @@ class Api::V1::ScreeningsController < ApplicationController
   end
 
   def create
-    screening = Screening.build(screening_params)
+    screening = Screening.new(screening_params)
+    logger.debug screening 
     if screening.save
       render json: screening, status: 201, location: [:api, screening]
     else
@@ -36,7 +37,7 @@ class Api::V1::ScreeningsController < ApplicationController
 private
 
   def screening_params
-    params.require(:screening).permit(:title, :location, :time_date, :terms_n_conditions, :pass_barcode_string, :max_tickets_to_issue)
+    params.require(:screening).permit(:title, :location, :time_date, :terms_n_conditions, :pass_barcode_string, :max_tickets_to_issue, :parse_screening_object_id)
   end
 
 

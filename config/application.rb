@@ -38,4 +38,8 @@ module Passes
     config.autoload_paths += %W(\#{config.root}/lib)
     config.app_generators.scaffold_controller :responders_controller
   end
+
+  # W3C Date formaters
+  Time::DATE_FORMATS[:w3c] = "%Y-%m-%dT%H:%M:%S%:z"
+  Date::DATE_FORMATS[:w3c] = "%Y-%m-%d"
 end

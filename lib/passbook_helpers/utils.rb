@@ -32,11 +32,11 @@ module PassbookHelpers
       # Screening info
       pass_json['organizationName'] = screening['org_name'] || 'ReeelApp'
       pass_json['serialNumber'] = pass[:serial_number] || '1234556' 
-      pass_json['relevantDate'] = screening['time_date'] || DateTime.new.to_s
+      pass_json['relevantDate'] = screening['time_date'].to_formatted_s(:w3c) || DateTime.now.to_formatted_s(:w3c)
       pass_json['locations'][0]['longitude'] = screening['location']['lng'] || -122.3748889
       pass_json['locations'][0]['latitude'] = screening['location']['lat'] || 37.6189722
       pass_json['eventTicket']['auxiliaryFields'][0]['value'] = screening['location_name'] || 'AMC Empire 25'
-      pass_json['eventTicket']['auxiliaryFields'][1]['value'] = screening['time_date'] || DateTime.new.to_s     
+      pass_json['eventTicket']['auxiliaryFields'][1]['value'] = screening['time_date'].to_formatted_s(:w3c) || DateTime.now.to_formatted_s(:w3c)     
       pass_json['eventTicket']['backFields'][0]['value'] = screening['terms_n_conditions'] || 'Some Terms & Conditions'
       # Pass info
       # user dependent
