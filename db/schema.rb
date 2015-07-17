@@ -11,20 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711074836) do
+ActiveRecord::Schema.define(version: 20150715211907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "passes", force: :cascade do |t|
-    t.string   "pass_type_id",  default: ""
-    t.string   "serial_number", default: ""
+    t.string   "pass_type_id",         default: ""
+    t.string   "serial_number",        default: ""
     t.integer  "screening_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "user_id"
+    t.string   "authentication_token"
   end
 
   add_index "passes", ["screening_id"], name: "index_passes_on_screening_id", using: :btree
+  add_index "passes", ["user_id"], name: "index_passes_on_user_id", using: :btree
 
   create_table "screenings", force: :cascade do |t|
     t.string   "title",                     default: ""

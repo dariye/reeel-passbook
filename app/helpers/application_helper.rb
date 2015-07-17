@@ -14,18 +14,18 @@ module ApplicationHelper
     puts '[ Done ]'
   end
 
-  def modify_pass_json(pass={})
+  def modify_pass_json(pass={}, screening={})
     puts '[ ok ] Updating pass data'
     json_file_path = ENV['pass_target_path'] + '/pass.json'
     pass_json = JSON.parse(File.read(json_file_path))
-    pass_json['passTypeIdentifier'] = ENV['pass_type_identifier']
+    pass_json['passTypeIdentifier'] = pass['pass_type_id']
     pass_json['teamIdentifier'] = ENV['team_identifier']
     pass_json['serialNumber'] = pass[:serial_number] || '1234556' 
     pass_json['authenticationToken'] = pass[:authentication_token] || '123345667'
     pass_json['webServiceURL'] = ENV['web_service_ur'] || 'http://localhost:8080/'
-    pass_json['barcode']['message'] = barcode_string_for_pass(pass)
-    pass_json['eventTicket']['primaryFields'][0]['value'] = 'GOT S6 Pre-Screening'
-    pass_json['eventTicket']['secondaryFields'][0]['value'] = 'Paul'
+    pass_json['barcode']['message'] = pass_barcode_string(pass)
+    pass_json['eventTicket']['primaryFields'][0]['value'] = screening['title'] || 'GOT S6 Pre-Screening'
+    pass_json['eventTicket']['secondaryFields'][0]['value'] = pass['title'] || 'Paul'
 
     File.open(json_file_path, 'w') do |f|
       f.write JSON.pretty_generate(pass_json)
@@ -63,7 +63,7 @@ module ApplicationHelper
 
   def barcode_string_for_pass(pass)
     barcode_string = {
-      'pass_type_id' => ENV['pass_type_identifier'],
+      'pass_type_id' => pass['pass_type_id'],
       'serial_number' => pass[:serial_number],
       'authentication_token' => pass[:authentication_token]
     }

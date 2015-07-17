@@ -1,16 +1,32 @@
+require "#{Rails.root}/lib/passbook_helpers/utils.rb"
+
 class Api::V1::PassesController < ApplicationController
+  include PassbookHelpers::Utils
+  
+  skip_before_filter :verify_authenticity_token # <-- find another way
   respond_to :json
 
   def index
-    respond_with Pass.all
+    respond_with Pass.search(params)
   end
 
   def show
-    respond_with Pass.find(params[:id])
+    pass = Pass.find(params[:id])
+    pass_path = ENV['passes_folder_path'] + "/passes/#{pass.id}"
+    pass_json = File.read(pass_path + "/pass.json")
+    pkpass = Passbook::PKPass.new pass_json
+    files = []
+    Dir.foreach(pass_path) do |file|
+      next if file == '.' or file == '..' or file == '.DS_Store'
+      files << File.join(pass_path, file) 
+    end
+    pkpass.addFiles files
+    send_file(pkpass.file.path, type: 'application/vnd.apple.pkpass', disposition: 'attachment', filename: 'pass.pkpass', status: 201, location: [:api, pass])
   end
 
-  def create 
-    pass = Screening.passes.build(pass_params)
+  def create
+    screening = Screening.find(params[:pass][:screening_id])
+    pass = screening.passes.build(pass_params)
     if pass.save
       render json: pass, status: 201, location: [:api, pass]
     else
@@ -19,7 +35,8 @@ class Api::V1::PassesController < ApplicationController
   end
 
   def update
-    pass = Screening.passes.find(params[:id])
+    screening = Screening.find(params[:pass][:screening_id])
+    pass = screening.passes.build(pass_params)
     if pass.update(pass_params)
       render json: pass, status: 200, location: [:api, pass]
     else
@@ -35,6 +52,6 @@ class Api::V1::PassesController < ApplicationController
 
 private
   def pass_params 
-    params.require(:pass).permit(:pass_type_id, :serial_number)
+    params.require(:pass).permit(:pass_type_id, :serial_number, :screening_id, :user_id)
   end
 end

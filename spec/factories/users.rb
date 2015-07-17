@@ -1,6 +1,8 @@
+require 'ffaker'
+
 FactoryGirl.define do
   factory :user do
-    name "MyString"
-    email "MyString"
+    name FFaker::Name.name    
+    email FFaker::Internet.email 
   end
 end
