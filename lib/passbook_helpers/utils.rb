@@ -42,7 +42,7 @@ module PassbookHelpers
       # user dependent
       pass_json['eventTicket']['primaryFields'][0]['value'] = screening['title'] || 'GOT S6 Pre-Screening'
       pass_json['eventTicket']['secondaryFields'][0]['value'] = user['name'] || 'Jon Snow'
-      pass_json['eventTicket']['secondaryFields'][1]['value'] = user['number_of_seats'] || 1
+      pass_json['eventTicket']['secondaryFields'][1]['value'] = pass['number_of_seats'] || 1
 
       File.open(json_file_path, 'w') do |f|
         f.write JSON.pretty_generate(pass_json)

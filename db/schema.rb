@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715211907) do
+ActiveRecord::Schema.define(version: 20150717191536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150715211907) do
     t.datetime "updated_at",                        null: false
     t.integer  "user_id"
     t.string   "authentication_token"
+    t.integer  "number_of_seats",      default: 1
   end
 
   add_index "passes", ["screening_id"], name: "index_passes_on_screening_id", using: :btree

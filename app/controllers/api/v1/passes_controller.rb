@@ -52,6 +52,6 @@ class Api::V1::PassesController < ApplicationController
 
 private
   def pass_params 
-    params.require(:pass).permit(:pass_type_id, :serial_number, :screening_id, :user_id)
+    params.require(:pass).permit(:pass_type_id, :serial_number, :screening_id, :user_id, :number_of_seats)
   end
 end

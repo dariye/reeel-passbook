@@ -2,7 +2,8 @@ require "#{Rails.root}/lib/passbook_helpers/utils.rb"
 class Pass < ActiveRecord::Base
   include PassbookHelpers::Utils
 
-  validates :pass_type_id, :serial_number, presence: true
+  validates :pass_type_id, :serial_number, :screening_id, :user_id, :number_of_seats, presence: true
+  
   belongs_to :screening, inverse_of: :passes
   belongs_to :user, inverse_of: :passes
   before_save :add_auth_token
