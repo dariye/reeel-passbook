@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717202243) do
+ActiveRecord::Schema.define(version: 20150717203320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20150717202243) do
     t.string   "tn_img_x_content_type"
     t.integer  "tn_img_x_file_size"
     t.datetime "tn_img_x_updated_at"
-    t.integer  "max_tickets_to_issue",      default: 1
     t.string   "parse_screening_object_id", default: ""
     t.string   "location_name",             default: ""
   end
