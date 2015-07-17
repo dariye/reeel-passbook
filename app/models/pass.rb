@@ -8,6 +8,7 @@ class Pass < ActiveRecord::Base
   before_save :add_auth_token
   after_save :generate_pass_file
   after_update :generate_pass_file
+  after_destroy :destroy_pass
   # Filter by -> screening
   scope :filter_by_parse_screening_id, lambda { |id|
     where("parse_screening_object_id = ?", id)
@@ -44,5 +45,9 @@ private
   def generate_pass_file
     configure_pass_folder_path(self.id) 
     modify_pass_json(self, self.screening, self.user) 
+  end
+
+  def destroy_pass
+    delete_pass_dir(ENV['passes_folder_path'] + "/passes/#{self.id}")
   end
 end

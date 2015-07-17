@@ -57,5 +57,9 @@ module PassbookHelpers
       }
       barcode_string.to_json
     end
+
+    def delete_pass_dir(path)
+      FileUtils.remove_entry(path)
+    end
   end
 end
