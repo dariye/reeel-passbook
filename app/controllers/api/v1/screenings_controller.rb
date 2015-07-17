@@ -37,7 +37,7 @@ class Api::V1::ScreeningsController < ApplicationController
 private
 
   def screening_params
-    params.require(:screening).permit(:title, :location, :time_date, :terms_n_conditions, :pass_barcode_string, :max_tickets_to_issue, :parse_screening_object_id)
+    params.require(:screening).permit(:title, :location, :time_date, :terms_n_conditions, :max_tickets_to_issue, :parse_screening_object_id, :location_name)
   end
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717191536) do
+ActiveRecord::Schema.define(version: 20150717202243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20150717191536) do
     t.string   "location",                  default: ""
     t.datetime "time_date",                 default: '2015-07-10 06:16:10'
     t.text     "terms_n_conditions",        default: ""
-    t.string   "pass_barcode_string",       default: ""
     t.datetime "created_at",                                                null: false
     t.datetime "updated_at",                                                null: false
     t.string   "bg_img_file_name"
@@ -72,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150717191536) do
     t.datetime "tn_img_x_updated_at"
     t.integer  "max_tickets_to_issue",      default: 1
     t.string   "parse_screening_object_id", default: ""
+    t.string   "location_name",             default: ""
   end
 
   create_table "users", force: :cascade do |t|
