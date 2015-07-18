@@ -36,7 +36,6 @@ module Passes
       g.helper = false
     end
     config.autoload_paths += %W(\#{config.root}/lib)
-    config.app_generators.scaffold_controller :responders_controller
   end
 
   # W3C Date formaters
