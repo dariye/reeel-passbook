@@ -2,8 +2,7 @@ require "#{Rails.root}/lib/passbook_helpers/utils.rb"
 
 class Api::V1::PassesController < ApplicationController
   include PassbookHelpers::Utils
-  
-  skip_before_filter :verify_authenticity_token # <-- find another way
+  skip_before_action :verify_authenticity_token # <-- find another way
   respond_to :json
 
   def index

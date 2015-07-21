@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token  
   respond_to :json
-  skip_before_filter :verify_authenticity_token  
   def index 
     respond_with User.search(params)
   end
