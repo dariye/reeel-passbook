@@ -31,12 +31,12 @@ ActiveRecord::Schema.define(version: 20150717203320) do
   add_index "passes", ["user_id"], name: "index_passes_on_user_id", using: :btree
 
   create_table "screenings", force: :cascade do |t|
-    t.string   "title",                     default: ""
-    t.string   "location",                  default: ""
-    t.datetime "time_date",                 default: '2015-07-10 06:16:10'
-    t.text     "terms_n_conditions",        default: ""
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
+    t.string   "title",                   default: ""
+    t.string   "location",                default: ""
+    t.datetime "time_date",               default: '2015-07-10 06:16:10'
+    t.text     "terms_n_conditions",      default: ""
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.string   "bg_img_file_name"
     t.string   "bg_img_content_type"
     t.integer  "bg_img_file_size"
@@ -69,8 +69,7 @@ ActiveRecord::Schema.define(version: 20150717203320) do
     t.string   "tn_img_x_content_type"
     t.integer  "tn_img_x_file_size"
     t.datetime "tn_img_x_updated_at"
-    t.string   "parse_screening_object_id", default: ""
-    t.string   "location_name",             default: ""
+    t.string   "location_name",           default: ""
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,8 +1,8 @@
 class Api::V1::ScreeningsController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  # before_filter :verified_request?
   respond_to :json
-
+  # skip_before_action :verify_authenticity_token
+  # before_filter :verified_request?
+  
   def index
     respond_with Screening.all
   end
@@ -13,7 +13,6 @@ class Api::V1::ScreeningsController < ApplicationController
 
   def create
     screening = Screening.new(screening_params)
-    logger.debug screening 
     if screening.save
       render json: screening, status: 201, location: [:api, screening]
     else
