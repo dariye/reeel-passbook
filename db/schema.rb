@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150722141153) do
     t.integer  "tn_img_x_file_size"
     t.datetime "tn_img_x_updated_at"
     t.string   "location_name",           default: ""
-    t.string   "parse_id",                default: ""
+    t.string   "parseid",                 default: ""
   end
 
   create_table "users", force: :cascade do |t|

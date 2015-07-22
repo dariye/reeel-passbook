@@ -11,8 +11,8 @@ class Pass < ActiveRecord::Base
   after_update :generate_pass_file
   after_destroy :destroy_pass
   # Filter by -> screening
-  scope :filter_by_parse_screening_id, lambda { |id|
-    where("parse_screening_object_id = ?", id)
+  scope :filter_by_parseid, lambda { |id|
+    where("parseid = ?", id)
   }
 
   # Filter by -> serial_number
@@ -32,7 +32,7 @@ class Pass < ActiveRecord::Base
 
   def self.search(params = {})
     passes = params[:pass_ids].present? ? Pass.find(params[:pass_ids]) : Pass.all
-    passes = passes.filter_by_parse_screening_id(params[:object_id]) if params[:object_id]
+    passes = passes.filter_by_parseid(params[:object_id]) if params[:object_id]
     passes = passes.filter_by_serial_number(params[:serial_number]) if params[:serial_number]
     passes = passes.filter_by_pass_type_id(params[:pass_type_id]) if params[:pass_type_id]
     passes = passes.filter_by_user(params[:user_id]) if params[:user_id]
