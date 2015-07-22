@@ -1,7 +1,7 @@
 class Api::V1::ScreeningsController < ApplicationController
   respond_to :json
-  # skip_before_action :verify_authenticity_token
-  # before_filter :verified_request?
+  skip_before_action :verify_authenticity_token
+  before_action :verified_request?
   
   def index
     respond_with Screening.all
@@ -40,11 +40,11 @@ private
     params.require(:screening).permit(:title, :location, :time_date, :terms_n_conditions, :parse_screening_object_id, :location_name)
   end
 
-  # def verified_request?
-  #   if request.content_type == 'application/json'
-  #     true
-  #   else
-  #     super()
-  #   end
-  # end
+  def verified_request?
+    if request.content_type == 'application/json'
+      true
+    else
+      super()
+    end
+  end
 end
