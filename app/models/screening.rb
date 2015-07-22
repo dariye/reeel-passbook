@@ -1,6 +1,6 @@
 class Screening < ActiveRecord::Base
   validates :title, :location, :time_date, :terms_n_conditions, :location_name, presence: true 
-  validates :parse_screening_object_id, uniqueness: true, presence: true
+  validates :parse_id, presence: true
    
   has_many :passes, dependent: :destroy
   has_many :users, through: :passes
@@ -15,13 +15,13 @@ class Screening < ActiveRecord::Base
   }
   
   # Filter by -> parse_object_id
-  scope :filter_by_parse_screening_id, lambda { |id|
-    where("parse_screening_object_id = ?", id)
+  scope :filter_by_parse_id, lambda { |id|
+    where("parse_id = ?", id)
   }
 
   def self.search(params = {})
     screenings = params[:screening_ids].present? ? Screening.find(params[:screening_ids]) : Screening.all
-    screenings = screening.filter_by_parse_screening_id(params[:object_id]) if params[:object_id]
+    screenings = screening.filter_by_parse_id(params[:object_id]) if params[:object_id]
     screenings
   end
 end
