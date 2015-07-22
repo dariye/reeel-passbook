@@ -37,7 +37,7 @@ class Api::V1::ScreeningsController < ApplicationController
 
 private
   def screening_params
-    params.require(:screening).permit(:title, :location, :time_date, :terms_n_conditions, :parse_id, :location_name)
+    params.require(:screening).permit(:title, :location, :time_date, :terms_n_conditions, :location_name, :parse_id)
   end
 
   def verified_request?
