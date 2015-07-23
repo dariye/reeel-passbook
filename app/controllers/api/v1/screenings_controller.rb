@@ -16,7 +16,7 @@ class Api::V1::ScreeningsController < ApplicationController
     if screening.save
       render json: screening, status: 201, location: [:api, screening]
     else
-      render json: { errors: screening.errors }, status: 422
+      render json: { errors: screening.errors.full_messages }, status: 422
     end
   end
 
