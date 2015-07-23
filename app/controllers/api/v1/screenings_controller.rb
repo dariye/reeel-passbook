@@ -1,7 +1,6 @@
 class Api::V1::ScreeningsController < ApplicationController
-  respond_to :json
   skip_before_action :verify_authenticity_token
-  
+  respond_to :json
   def index
     respond_with Screening.search(params)
   end
@@ -11,7 +10,7 @@ class Api::V1::ScreeningsController < ApplicationController
   end
 
   def create
-    screening = Screening.create(screening_params)
+    screening = Screening.new(screening_params)
     if screening.save
       render json: screening, status: 201, location: [:api, screening]
     else
