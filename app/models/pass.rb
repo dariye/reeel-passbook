@@ -11,23 +11,23 @@ class Pass < ActiveRecord::Base
   after_update :generate_pass_file
   after_destroy :destroy_pass
   # Filter by -> screening
-  scope :filter_by_parseid, lambda { |id|
-    where("parseid = ?", id)
+  scope :filter_by_parseid, lambda { |object_id|
+    where("parseid LIKE ?", "%#{object_id}%")
   }
 
   # Filter by -> serial_number
   scope :filter_by_serial_number, lambda { |serial_number|
-    where("serial_number = ?", serial_number)
+    where("serial_number LIKE ?", "%#{serial_number}%")
   }
   
   # Filter by -> pass_type_id
   scope :filter_by_pass_type_id, lambda { |pass_type_id|
-    where("pass_type_id = ?", pass_type_id)
+    where("pass_type_id LIKE ?", "%#{pass_type_id}%")
   }
 
   # Filter by -> user_id
   scope :filter_by_user, lambda { |user_id|
-    where("user_id = ?", user_id)
+    where("user_id LIKE ?", "%#{user_id}%")
   }
 
   def self.search(params = {})

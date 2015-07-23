@@ -15,8 +15,8 @@ class Screening < ActiveRecord::Base
   }
   
   # Filter by -> parse_object_id
-  scope :filter_by_parseid, lambda { |id|
-    where("parseid = ?", id)
+  scope :filter_by_parseid, lambda { |object_id|
+    where("parseid LIKE ?", "%#{object_id}%")
   }
 
   def self.search(params = {})

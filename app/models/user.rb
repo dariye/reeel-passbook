@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # Filter -> email
 
   scope :filter_by_email, lambda { |email|
-    where("email = ?", email)
+    where("lower(email) LIKE ?", "%#{email.downcase}%")
   }
 
   def self.search(params = {})

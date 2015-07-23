@@ -4,11 +4,11 @@ class Api::V1::ScreeningsController < ApplicationController
   before_action :verified_request?
   
   def index
-    respond_with Screening.all
+    respond_with Screening.search(params)
   end
 
   def show
-    respond_with Screening.search(params)
+    respond_with Screening.find(params[:id])
   end
 
   def create
