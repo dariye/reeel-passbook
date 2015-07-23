@@ -8,7 +8,7 @@ class Api::V1::ScreeningsController < ApplicationController
   end
 
   def show
-    respond_with Screening.search(params[:object_id])
+    respond_with Screening.search(params)
   end
 
   def create
