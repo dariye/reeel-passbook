@@ -21,7 +21,7 @@ class Screening < ActiveRecord::Base
 
   def self.search(params = {})
     screenings = params[:screening_ids].present? ? Screening.find(params[:screening_ids]) : Screening.all
-    screenings = screening.filter_by_parseid(params[:object_id]) if params[:object_id]
+    screenings = screenings.filter_by_parseid(params[:object_id]) if params[:object_id]
     screenings
   end
 end
