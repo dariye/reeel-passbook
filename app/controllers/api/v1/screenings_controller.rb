@@ -12,7 +12,7 @@ class Api::V1::ScreeningsController < ApplicationController
   end
 
   def create
-    screening = Screening.new(screening_params)
+    screening = Screening.create(screening_params)
     if screening.save
       render json: screening, status: 201, location: [:api, screening]
     else
