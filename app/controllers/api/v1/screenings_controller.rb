@@ -1,21 +1,20 @@
 class Api::V1::ScreeningsController < ApplicationController
+  skip_before_action :verify_authenticity_token, :only => [:create, :update]
   respond_to :json
-
   def index
-    respond_with Screening.all
+    respond_with Screening.search(params)
   end
 
   def show
-    respond_with Screening.filter_by_parse_screening_id(params[:object_id])
+    respond_with Screening.find(params[:id])
   end
 
   def create
     screening = Screening.new(screening_params)
-    logger.debug screening 
     if screening.save
       render json: screening, status: 201, location: [:api, screening]
     else
-      render json: { errors: screening.errors }, status: 422
+      render json: { errors: screening.errors.full_messages }, status: 422
     end
   end
 
@@ -35,10 +34,7 @@ class Api::V1::ScreeningsController < ApplicationController
   end
 
 private
-
   def screening_params
-    params.require(:screening).permit(:title, :location, :time_date, :terms_n_conditions, :parse_screening_object_id, :location_name)
+    params.require(:screening).permit(:title, :location, :time_date, :terms_n_conditions, :location_name, :parseid)
   end
-
-
 end
