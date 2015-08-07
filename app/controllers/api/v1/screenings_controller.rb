@@ -1,5 +1,5 @@
 class Api::V1::ScreeningsController < ApplicationController
-  skip_before_action :verify_authenticity_token, :only => [:create, :update]
+  skip_before_action :verify_authenticity_token
   respond_to :json
   def index
     respond_with Screening.search(params)
