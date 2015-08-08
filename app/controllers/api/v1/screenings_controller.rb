@@ -1,4 +1,5 @@
 class Api::V1::ScreeningsController < ApplicationController
+  protect_from_forgery except: [:create, :update] 
   skip_before_action :verify_authenticity_token
   respond_to :json
   def index
