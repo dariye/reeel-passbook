@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.4.2"
+  },
+  "applications": {
+    "Reeel": {
+      "applicationId": "R0o50fZOPQuUPEsL5L4wSs0ToG9PF26eQRQD8W0s",
+      "masterKey": "k3W8HfLeqYtBVGsoeJ7BY6x5upRVMZGRG7S7Ly49"
+    },
+    "_default": {
+      "link": "Reeel"
+    }
+  }
+}
